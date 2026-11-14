@@ -4,7 +4,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import './App.css'
 
-const API_BASE_URL = 'https://rental-backend.onrender.com'
+const API_BASE_URL = 'https://ecommerce-backend-nnlb.onrender.com'
 
 function App() {
   const [count, setCount] = useState(0)
