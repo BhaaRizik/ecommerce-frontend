@@ -1,11 +1,21 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import heroImg from './assets/hero.png'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import './App.css'
 
+const API_BASE_URL = 'https://rental-backend.onrender.com'
+
 function App() {
   const [count, setCount] = useState(0)
+  const [greeting, setGreeting] = useState<string | null>(null)
+
+  useEffect(() => {
+    fetch(`${API_BASE_URL}/api/greeting`)
+      .then((res) => res.json())
+      .then((data: { message: string }) => setGreeting(data.message))
+      .catch(() => setGreeting('Could not reach the backend.'))
+  }, [])
 
   return (
     <>
@@ -17,6 +27,7 @@ function App() {
         </div>
         <div>
           <h1>Get started</h1>
+          {greeting && <p><strong>Backend says:</strong> {greeting}</p>}
           <p>
             Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
           </p>
